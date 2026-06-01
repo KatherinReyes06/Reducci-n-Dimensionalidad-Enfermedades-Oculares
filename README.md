@@ -1,5 +1,7 @@
 # Comparación de Métodos de Reducción de Dimensionalidad en la Predicción de Enfermedades Oculares mediante Redes Neuronales Convolucionales
 
+[![Abrir en nbviewer](https://img.shields.io/badge/Ver%20notebook-nbviewer-orange)](https://nbviewer.org/github/KatherinReyes06/Reducci-n-Dimensionalidad-Enfermedades-Oculares/blob/main/clasificacion_enfermedades_oculares_ODIR5K.ipynb)
+
 Trabajo de grado — Escuela de Matemáticas, Universidad Industrial de Santander  
 Autora: Katherin Liceth Reyes Enciso  
 Director: PhD. Andrés Sebastián Ríos Gutiérrez
@@ -79,11 +81,10 @@ Esta opción no requiere subir los datos a tu Google Drive personal.
 El repositorio se ha organizado de forma modular para facilitar el mantenimiento y la escalabilidad:
 
 ```text
-Reducci-n-Dimensionalidad-Enfermedades-Oculares-main/
+Reducci-n-Dimensionalidad-Enfermedades-Oculares/
 ├── README.md
 ├── main.py
-├── notebooks/
-│   └── clasificacion_enfermedades_oculares_ODIR5K.ipynb  # Notebook original con el flujo completo
+├── clasificacion_enfermedades_oculares_ODIR5K.ipynb  # Notebook original con resultados
 └── src/
     ├── __init__.py
     ├── data_loader.py               # Funciones para carga y preprocesamiento de imágenes
