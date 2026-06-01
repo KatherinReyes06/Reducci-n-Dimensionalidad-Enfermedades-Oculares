@@ -51,8 +51,7 @@ recursos computacionales significativamente mayores. Para estos experimentos
 se utilizó **Google Colab Pro** con entorno de ejecución **GPU T4** y mayor 
 capacidad de RAM.
 
-Si intentas ejecutar estos experimentos en Google Colab gratuito, es probable 
-que encuentres errores de memoria (OOM - Out of Memory). Se recomienda:
+Se recomienda:
 
 - **Google Colab Pro** con GPU T4 para modelos con imágenes completas.
 - **Google Colab gratuito** con GPU T4 es suficiente para los experimentos 
@@ -63,12 +62,61 @@ que encuentres errores de memoria (OOM - Out of Memory). Se recomienda:
 El conjunto de datos utilizado es **ODIR-5K** (Ocular Disease Intelligent Recognition), disponible en:  
 https://www.kaggle.com/datasets/andrewmvd/ocular-disease-recognition-odir5k
 
-Descarga el dataset y súbelo a tu Google Drive antes de ejecutar el notebook.
+### Opción A: Descargar y subir a Google Drive
+Descarga el dataset desde Kaggle y súbelo a tu Google Drive. Luego monta el Drive en Colab y ajusta la ruta en el notebook.
+
+### Opción B: Conectar Kaggle directamente desde Colab (Recomendada)
+En Google Colab, haz clic en el ícono de base de datos en el panel izquierdo, busca "ODIR" en el buscador y selecciona el dataset. Colab generará automáticamente el código de importación:
+
+```python
+import kagglehub
+path = kagglehub.dataset_download("andrewmvd/ocular-disease-recognition-odir5k")
+```
+
+Esta opción no requiere subir los datos a tu Google Drive personal.
 
 ## Estructura del repositorio
-El repositorio contiene actualmente el siguiente archivo:
+El repositorio se ha organizado de forma modular para facilitar el mantenimiento y la escalabilidad:
 
-- `clasificacion_enfermedades_oculares_ODIR5K.ipynb` — Notebook principal con todo el código del proyecto.
+```text
+Reducci-n-Dimensionalidad-Enfermedades-Oculares-main/
+├── README.md
+├── main.py
+├── notebooks/
+│   └── clasificacion_enfermedades_oculares_ODIR5K.ipynb  # Notebook original con el flujo completo
+└── src/
+    ├── __init__.py
+    ├── data_loader.py               # Funciones para carga y preprocesamiento de imágenes
+    ├── dimensionality_reduction.py  # Algoritmos de PCA, UMAP, AF y estadísticos
+    ├── visualization.py             # Gráficas y reportes visuales
+    ├── models.py                    # Lógica de entrenamiento de modelos
+    ├── evaluation.py                # Métricas, matrices de confusión y reportes
+    ├── experiments.py               # Configuración y ejecución de experimentos
+    └── utils.py                     # Funciones auxiliares
+```
+
+
+## Forma de ejecución recomendada
+
+### ✅ Opción 1: Notebook en Google Colab (Recomendada)
+
+Esta es la forma en que fue desarrollado y ejecutado el proyecto originalmente. Se recomienda usar esta opción para garantizar compatibilidad y acceso a GPU.
+
+1. Abre Google Colab: https://colab.research.google.com
+2. Sube o abre el notebook `notebooks/clasificacion_enfermedades_oculares_ODIR5K.ipynb`.
+3. Activa el entorno de GPU: *Entorno de ejecución → Cambiar tipo de entorno de ejecución → T4 GPU*.
+4. Ejecuta las celdas de configuración del entorno en el orden indicado.
+5. Verifica que el dataset ODIR-5K esté en tu Google Drive en la ruta indicada en el notebook.
+6. Ejecuta las celdas en orden secuencial.
+
+### ⚠️ Opción 2: Ejecución local (No recomendada)
+
+Es posible ejecutar el código de forma local usando los módulos de `src/` y el archivo `main.py`. Sin embargo, en esta opción  pueden presentarse errores dependiendo del sistema operativo, la versión de Python y la disponibilidad de GPU en el equipo.
+
+Requisitos mínimos para ejecución local:
+- Python 3.10+
+- GPU compatible con CUDA (obligatoria para CuPy y modelos de aprendizaje profundo)
+- Instalación manual de todas las librerías listadas en la sección de requisitos
 
 
 ## Configuración del entorno en Google Colab
@@ -105,14 +153,7 @@ print(f"Versión de CuPy: {cp.__version__}")
 print(f"GPUs disponibles: {cp.cuda.runtime.getDeviceCount()}")
 ```
 
-## Pasos de ejecución
 
-1. Abre Google Colab: https://colab.research.google.com
-2. Sube o abre el notebook del repositorio.
-3. Activa el entorno de GPU: *Entorno de ejecución → Cambiar tipo de entorno de ejecución → T4 GPU*.
-4. Ejecuta las celdas de configuración del entorno en el orden indicado.
-5. Verifica que el dataset ODIR-5K esté en tu Google Drive en la ruta indicada en el notebook.
-6. Ejecuta las celdas en orden secuencial.
 
 ## Contacto
 
